@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 import useCounter from '../src/hooks/features/homepage/useCounter';
+import { describe, it } from 'node:test';
 
 describe('useCounter', () => {
   it('should initialize with count 0 and val 1', () => {
@@ -62,3 +63,13 @@ describe('useCounter', () => {
     expect(result.current.count).toBe(-2);
   });
 });
+
+function expect(received: number) {
+  return {
+    toBe(expected: number) {
+      if (received !== expected) {
+        throw new Error(`Expected ${received} to be ${expected}`);
+      }
+    }
+  };
+}
